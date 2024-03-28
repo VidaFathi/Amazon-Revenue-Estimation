@@ -1,4 +1,4 @@
-# Amazon-Revenue-Estimation
+# Amazon-Revenue-Estimation with Linear Regression algorithm
 We want to predict quarterly revenue by using a Linear Regression model with Rstudio.
 To estimate the model, we use the following path:
 

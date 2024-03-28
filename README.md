@@ -1,29 +1,34 @@
 # Amazon-Revenue-Estimation
-we want to predict quarterly revenue as a function of period
-Model-->Linear Regression--> esrtimate model-->RegressionModel1.png
+We want to predict quarterly revenue by using a Linear Regression model with Rstudio.
+To estimate the model, we use the following path:
 
-For Linear Regression when you estimate a model, go to plot and in Dashboards--> 6 graphs are going to pop up. most important one is "Residual vs Fitterd one" and then "Residual vs row order" and "Residual vs normal density".
+  Model --> Linear Regression --> estimate model --> RegressionModel1.png
 
+when you estimate a Linear Regression model , six graphs will pop up in plot Dashboard. The most important ones would be  "Residual vs Fittered one" , "Residual vs row order" and "Residual vs normal density".
 
 "Residual vs normal density": 
-  for having a good Regression model, these residulas have to have a normal distribution, it means that both have to close to each other.
+    For having a good Regression  model, the residuals must have a normal distribution, which means     that both must be close to each other
 
-"Residual vs Fitterd one"---> for this Graph we don't want to see any special pattern, sp we're saying "NO PATTERN IS GOOD PATTERN"----> Graphs.png
+"Residual vs Fitted one":
+   For Residual vs fitted one we don't want to see any special pattern. so we say that "NO PATTERN     IS GOOD PATTERN" ---> Graphs.png
+  
+The graphs.png shows that we have a pattern, so we don't like it.
+We go back to :
+    Data ---> Transform --> create new variable --> instead of looking at QR we create a LogQR variable
+LogQR=Ln(QR) --> createnewvariable.png
 
-in this model, we have a pattern, so we don't like this model. we're going back to 'Data'---> 'Transform'--> create new variable--> instead of looking at QR we create a LogQR variable
-LogQR=Ln(QR)--> createnewvariable.png
- and then run another Regression model for LogQR ----> RegressionModel2.png
- Graphs for Log QR --> Graphs2.png (you can see that we don't have any pattern here which is a good sign BUT we can see that we have a different result in different quarter)
+Then we run another Regression model for LogQR ----> RegressionModel2.png
+Graphs for Log QR --> Graphs2.png 
+"RegressionModel2.png" shows a good sign that we don't have any pattern here. However, we can see that we have a different result in different quarters. This is a Time Series Analysis. We will add seasonality variables. 
 
- THis is a TIME SERIES ANALYSIS.---> we will add seasonality variables
+We change the type of the Fiscal year to a category variable and run the model -->RegressionModel3.png
+and the plot would be ---> Garphs3.png
 
- change the type of Fiscal year to category variable and run the model---->RegressionModel3.png
- and the plot would be ---> Garphs3.png
+We create four lag variables ---> Lagvariable.png
+L1 looks at the  previous quarter's revenue, while L2 looks at the two previous quarters----> lagvariablesmodel.png
 
- create 4 lag variables ---> Lagvariable.png
- L1 look into previous quarter revenue. L2 will look into two previous quarters----> lagvariablesmodel.png
-
- rerun the model with L1,L2 , .... --> RegressionModel4.png
- graphs4.png --> we don't have any special pattern - no pattern is good pattern
- NOTE: agar masaleye ma "Time series" abshe va bedonim  masalan revenue in mah bemahe ghabl basyegi dare bayad lag ro biarim toye analysemon.
- masalan agar darim sales ro mahiyane negah mikonam, bayad dar nazar begiram ke masalan dar mahe november sales  kheili ziade, bekharere thanksgiving o ina. baraye in mavared bayad dumivariables tarif konim.
+ We rerun the model with L1, L2, and so on. --> RegressionModel4.png
+ graphs4.png --> shows us that we don't have any special pattern. No pattern is a good pattern.
+ 
+ NOTE: if we have a time series analysis in which the revenue of the current month depends on the previous month, we should include lag variables in our analysis.
+ for example, if we want to analyze sales by month, we should consider that sales in November are usually  high due to Thanksgiving. For these purposes, we need to define dummy variables.
